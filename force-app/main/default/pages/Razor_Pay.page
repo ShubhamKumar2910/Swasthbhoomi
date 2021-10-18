@@ -1,0 +1,10 @@
+<apex:page controller="RazorPayIntegration">
+    <apex:form >
+        <apex:commandButton value="Generate Payment Link" action="{!GeneratepaymentLink}"/>
+    </apex:form>
+    <br/><br/>
+    <b>
+        <apex:outputlink value="{!bodyprint}">click Here To Pay</apex:outputlink>
+    </b>
+    <br/><br/>
+</apex:page>

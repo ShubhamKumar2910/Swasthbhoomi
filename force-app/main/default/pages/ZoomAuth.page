@@ -1,0 +1,12 @@
+<apex:page controller="ZoomApis">
+    <apex:form >
+        <apex:commandButton value="Generate Zoom Meeting" action="{!createMeeting}"/>
+    </apex:form>
+    <br/><br/>
+    <b>
+        <apex:outputlink value="{!bodyprint}">click Here To Join The Meeting</apex:outputlink>
+        <br/><br/>
+        {!pswrd}
+    </b>
+    <br/><br/>
+</apex:page>

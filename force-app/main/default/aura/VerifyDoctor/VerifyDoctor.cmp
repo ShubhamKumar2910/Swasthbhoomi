@@ -1,0 +1,5 @@
+<aura:component  implements="force:lightningQuickAction,force:hasRecordId" controller="verifyDoctorHelper" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"/>
+    <aura:attribute name="recordId" type="String" />
+
+</aura:component>

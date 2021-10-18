@@ -1,0 +1,11 @@
+<apex:page controller="googleauthclass">
+    <apex:form >
+        <apex:commandButton value="Connect To Google" action="{!connect}"/>
+        <apex:commandButton value="Generate Google Meeting" action="{!showtoken}"/>
+    </apex:form>
+    <br/><br/>
+    <b>
+        <apex:outputlink value="{!bodyprint}">click Here To Join The Meeting</apex:outputlink>
+    </b>
+    <br/><br/>
+</apex:page>

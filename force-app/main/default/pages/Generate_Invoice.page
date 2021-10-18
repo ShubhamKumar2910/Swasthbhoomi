@@ -1,0 +1,249 @@
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" renderAs="pdf"  controller="Generate_Invoice_Controller" >
+    <html>
+        <head>
+            
+            <style>
+                
+            </style>
+            <script type = "text/javascript">
+            
+            </script>
+        </head>
+        <apex:form >
+        <body >
+            <div>
+                <br/>
+                <div class="row" style="font-family: arial, sans-serif;">
+                    
+                    <div class="col-sm-1"><hr style="height:20px; background-color: #ff9900;margin-top:10%;"/></div>
+                    
+                    <div class="col-sm-10" style="width:90%;align:center;margin-left:5%; font-style: normal;">
+                        <div class="row">
+                            <div class="col-sm-10" style="">
+                                <div style="margin-top:0%;">
+                                    <div class="row" style="background-color: #f2f2f2;margin-top:2%;">
+                                        <table width="100%" style="margin-top:0%;font-weight: 100;">    
+                                            <tr>
+                                                <th>
+                                                    <apex:image url="{!$Resource.logo}" width="180" height="40"/> 
+                                                </th>
+                                                <th style="">
+                                                    <h2 style="text-align:center;margin-top:0%;font-size: 20px;height:2px;color:#808080;"><b>INVOICE</b></h2>   
+                                                </th>
+                                            </tr>
+                                            
+                                            <tr>    
+                                                <th style="">
+                                                    <div style="font-weight: 100;">
+                                                        
+                                                        <div style="font-size: 13px;width:180px;margin-top:10px;">{!invDetails.Company_Name__c} </div>
+                                                        <div style="font-size: 10px;width:150px;margin-top:10px;">{!invDetails.Address__c} </div>
+                                                        <div style="font-size: 10px;margin-top:10px;">PHONE : {!invDetails.Phone__c} </div>   
+                                                    </div>
+                                                    
+                                                </th >    
+                                                <th style="width:50%" >
+                                                    
+                                                    <table width="100%" style="margin-top:0px;font-weight: 100;" >
+                                                        <thead style="font-style: normal;">
+                                                            <tr style="text-align:center;margin-top:0%;font-size: 14px;">
+                                                                <th style="text-align:center;font-weight: 100;border-bottom: 1px solid #A9A9A9;">{!accountDetails.invoices__r[0].name}</th>
+                                                                <th style="text-align:center;font-weight: 100;border-bottom: 1px solid #A9A9A9;"> <apex:outputText value="{0,date,dd/MM/yyyy(d MMM)}"> <apex:param value="{!generationDate}" /> </apex:outputText></th>
+                                                            </tr>
+                                                            
+                                                        </thead>
+                                                        
+                                                        <tbody style="text-align:left;font-size: 10px;">                                                    
+                                                            <tr style="padding: 3px;">
+                                                                <td style="padding: 3px;">Company PAN</td>
+                                                                <td style="padding: 3px;">{!invDetails.Company_PAN__c}</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding: 3px;">Company TAN</td>
+                                                                <td style="padding: 3px;">{!invDetails.Company_TAN__c}</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding: 3px;">GST Reg. No   </td>
+                                                                <td style="padding: 3px;">{!invDetails.GST_Reg_No__c}</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding: 3px;">Account Number</td>
+                                                                <td style="padding: 3px;">{!invDetails.Account_Number__c}</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding: 3px;">Bank Name </td>
+                                                                <td style="padding: 3px;">{!invDetails.Bank_Name__c}</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding: 3px;">Bank IFSC Code</td>
+                                                                <td style="padding: 3px;">{!invDetails.Bank_IFSC_Code__c}</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding: 3px;">Bank Swift Code</td>
+                                                                <td style="padding: 3px;">{!invDetails.Bank_Swift_Code__c}</td>
+                                                                
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </th>    
+                                            </tr>    
+                                        </table>      
+                                        
+                                    </div>
+                                    <div class="row" style="margin-top:4%;">
+                                        <div class="col-sm-12">
+                                            <div class="detail-block">
+                                                <div class="details">
+                                                    <div style="width:100%;font-size: 12px;">
+                                                        <div style="width:40%;diplay:inline;float:left;">
+                                                            <div>BILL TO</div> 
+                                                            <hr style=" border: 1px solid #A9A9A9" />
+                                                            <div class ="Billingstreet" style="margin-top:0%" >
+                                                                <div>
+                                                                    Accounts Team
+                                                                </div><br/>
+                                                                {!accountDetails.Billingstreet} {!accountDetails.Billingcity}
+                                                                <div>
+                                                                    {!accountDetails.BillingState}{!accountDetails.BillingPostalCode}<br/>
+                                                                    <apex:outputPanel rendered="{!accountDetails.Phone != null}">
+                                                                    <div>
+                                                                        Phone : {!accountDetails.Phone}
+                                                                    </div>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel rendered="{!accountDetails.GSTIN__c != null}">
+                                                                    <div>
+                                                                        GSTIN : {!accountDetails.GSTIN__c}
+                                                                    </div>
+                                                                    </apex:outputPanel>
+                                                                </div>
+                                                            </div> 
+                                                            <a> {!accountDetails.website}</a>
+                                                        </div>
+                                                        <div style="width:10%;diplay:inline;float:left;">
+                                                            <span>&nbsp;</span>
+                                                        </div>
+                                                        <div style="width:50%;diplay:inline;float:left;">
+                                                            <div>PROJECT DETAILS</div>   
+                                                            <hr style=" border: 1px solid #A9A9A9;width:100%;" />
+                                                            <div>{!accountDetails.invoices__r[0].Description__c}</div> 
+                                                            <table style=" margin-top:2%;width: 100%; ">
+                                                                <tr style=" background-color:  #85a3e0; border-style: hidden;" >
+                                                                    <td style="width:27%;text-align:center;height:25px;">Resource Name</td>
+                                                                    <td style="width:27%;text-align:center;height:25px;">{!accountDetails.invoices__r[0].Resource_Name__c} (Hours)</td>
+                                                                    
+                                                                </tr>
+                                                                <tr style="">
+                                                                    <td style="width:27%;text-align:center;height:15px;"> <apex:outputText value="{0,date,dd/MM}"> <apex:param value="{!accountDetails.invoices__r[0].Start_Date__c}" /> </apex:outputText> - <apex:outputText value="{0,date,dd/MM}"> <apex:param value="{!accountDetails.invoices__r[0].End_Date__c}" /> </apex:outputText></td>
+                                                                    <td style="width:27%;text-align:center;height:15px;">{!accountDetails.invoices__r[0].Hours__c}</td>
+                                                                    
+                                                                </tr>
+                                                                <tr style="background-color: #ff9900; ">
+                                                                    <td style="width:27%;text-align:center; border-style:solid; border-color: black;">Total</td>
+                                                                    <td style="width:27%;text-align:center; border-style:solid; border-color: black;">{!accountDetails.invoices__r[0].Hours__c}</td>
+                                                                    
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>                                                
+                                                </div>  
+                                            </div>
+                                            
+                                        </div>                                   
+                                    </div>    
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            
+                                            <table  width="100%" style="margin-top:30%;border-collapse: collapse;font-size: 12px;" >
+                                                <thead style="background-color: #ff9900;text-align:center;color:white;">
+                                                    <tr >
+                                                        <th>DESCRIPTION</th>
+                                                        <th>HOURS</th>
+                                                        <th style="width:27%;">RATE</th>
+                                                        <th style="width:23%;">TOTAL</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: center;">
+                                                    <tr>
+                                                        <td class="Description" style="border-left-style: inset;border-right-style: inset;">{!accountDetails.invoices__r[0].Description__c} &nbsp;&nbsp; <apex:outputText value="{0,date,dd/MM}"> <apex:param value="{!accountDetails.invoices__r[0].Start_Date__c}" /> </apex:outputText> - <apex:outputText value="{0,date,dd/MM}"> <apex:param value="{!accountDetails.invoices__r[0].End_Date__c}" /> </apex:outputText></td>
+                                                        <td class="hours" style="border-left-style: inset;border-right-style: inset;">{!accountDetails.invoices__r[0].Hours__c}</td>
+                                                        <td style="border-left-style: inset;border-right-style: inset;">{!accountDetails.Per_Hour_Rate__c}</td>
+                                                        <td style="border-left-style: inset;border-right-style: groove;border-right: solid 2px;border-right-color:#0d0d0d;">{!accountDetails.invoices__r[0].Total__c}</td>
+                                                    </tr>
+                                                    <tr style="background-color:#f2f2f2;border: 0px;">
+                                                        <td style="border-left-style: inset;border-right-style: inset;border-left-color:#000;"></td>
+                                                        <td style="border-left-style: inset;border-right-style: inset;border-right-color:#000;">Other Charges</td>
+                                                        <td style="border-left-style: inset;border-right-style: inset;border-right-color:#000;"></td>
+                                                        <td style="border-left-style: inset;border-right-style: groove;border-right: solid 2px;border-right-color:#0d0d0d;">{!accountDetails.invoices__r[0].Other_Charges__c}</td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td style="border-left-style: inset;border-right-style: inset;border-bottom: 1px solid #000;"></td>
+                                                        <td style="border-left-style: inset;border-right-style: inset;border-bottom: 1px solid #000;"></td>
+                                                        <td style="border-left-style: inset;border-right-style: inset;border-bottom: 1px solid #000;"></td>
+                                                        <td style="border-left-style: inset;border-right-style: inset;border-bottom: 1px solid #0d0d0d;border-right: solid 2px;">0.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td >Remarks / Payment Instructions</td>
+                                                        <td ></td>
+                                                        <td style="text-align:right">SUBTOTAL</td>
+                                                        <td style="text-align:right;border-bottom: 1px solid #A9A9A9;">{!accountDetails.invoices__r[0].Sub_Total__c}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td ></td>
+                                                        <td ></td>
+                                                        <td style="text-align:right">DISCOUNT</td>
+                                                        <td style="text-align:right;border-bottom: 1px solid #A9A9A9;">{!accountDetails.invoices__r[0].Discount__c}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td ></td>
+                                                        <td ></td>
+                                                        <td style="text-align:right">SUBTOTAL LESS DISCOUNT</td>
+                                                        <td style="text-align:right;border-bottom: 1px solid #A9A9A9;">{!accountDetails.invoices__r[0].Sub_Total_Less_Discount__c}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td ></td>
+                                                        <td ></td>
+                                                        <td style="text-align:right">TAX RATE(IGST)</td>
+                                                        <td style="text-align:right;border-bottom: 1px solid #A9A9A9;">{!accountDetails.invoices__r[0].GST__c}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td ></td>
+                                                        <td ></td>
+                                                        <td style="text-align:right;border-bottom: 1px solid #000;">TOTAL TAX</td>
+                                                        <td style="text-align:right;border-bottom: 1px solid #000;">{!accountDetails.invoices__r[0].Total_Tax__c}</td>
+                                                    </tr>
+                                                    <tr style="font-size: 15px;">
+                                                        <td ></td>
+                                                        <td ></td>
+                                                        <td style="text-align:right;font-weight: bold;">Balance Due</td>
+                                                        <td style="text-align:right;border-bottom: 1px solid #000;background-color:#ff9900;height:30px;font-weight: bold;">{!currencyType} &nbsp;&nbsp; {!accountDetails.invoices__r[0].Balance_Due__c}</td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>    
+                                    </div>                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <br/>
+                    </div>
+                    <div class="col-sm-1" style="margin-top:4%;"><hr style="height:20px;background-color: #ff9900;"/>
+                    </div>
+                </div>
+            </div> 
+        </body> 
+        </apex:form>
+    </html>
+    
+</apex:page>
